@@ -1,47 +1,8 @@
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-
-// export default function Navbar() {
-//   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
-
-  // // const NavLink = ({ to, id, children }: { to: string; id: string; children: string }) => {
-  //   const isHovered = hoveredLink === id
-
-  //   return (
-  //     <Link 
-  //       to={to}
-  //       className="relative overflow-hidden inline-block"
-  //       onMouseEnter={() => setHoveredLink(id)}
-  //       onMouseLeave={() => setHoveredLink(null)}
-  //       style={{ height: '1.5em' }}
-  //     >
-  //       <div 
-  //         style={{
-  //           transform: isHovered ? 'translateY(-100%)' : 'translateY(0)',
-  //           transition: 'transform 0.15s ease-in-out'
-  //         }}
-  //       >
-  //         <span className="block text-white" style={{ height: '1.5em', lineHeight: '1.5em' }}>
-  //           {children}
-  //         </span>
-  //         <span 
-  //           className="block text-white absolute top-full left-0" 
-  //           style={{ 
-  //             fontFamily: '"Wulkan Display", serif',
-  //             height: '1.5em',
-  //             lineHeight: '1.5em'
-  //           }}
-  //         >
-  //           {children}
-  //         </span>
-  //       </div>
-  //     </Link>
-  //   )
-  // }
-
   return (
-    <nav className="fixed top-5 left-12 right-12 z-50 py-4">
+    <nav className="fixed top-5 z-50 py-4" style={{ left: 'clamp(12px, 3vw, 48px)', right: 'clamp(12px, 3vw, 48px)' }}>
       {/* Vignette overlay */}
       <div 
         style={{
@@ -55,28 +16,26 @@ export default function Navbar() {
           zIndex: -1
         }}
       />
-      <div className="max-w-[1600px] mx-auto flex items-center justify-between px-8">
-        <Link to="/" className="text-2xl font-bold tracking-tight text-white">
+      <div className="max-w-[1600px] mx-auto flex items-center justify-between" style={{ padding: '0 clamp(8px, 2vw, 32px)' }}>
+        <Link 
+          to="/" 
+          className="font-bold tracking-tight text-white"
+          style={{ fontSize: 'clamp(16px, 4.5vw, 24px)' }}
+        >
           CodeBlooded
         </Link>
         
-        {/* <div className="flex items-center gap-12">
-          <div className="hidden md:flex items-center gap-10 text-sm font-medium tracking-wider">
-            <NavLink to="/work" id="work">WORK</NavLink>
-            <NavLink to="/about" id="about">ABOUT</NavLink>
-            <NavLink to="/thoughts" id="thoughts">THOUGHTS</NavLink>
-            <NavLink to="/contact" id="contact">CONTACT</NavLink>
-          </div>
-        </div> */}
-<button 
-          className="text-sm font-medium tracking-wider text-white transition-all duration-200"
+        <button 
+          className="font-medium tracking-wider text-white transition-all duration-200"
           style={{
-            padding: '0.875rem 1rem',
+            fontSize: 'clamp(10px, 2.8vw, 14px)',
+            padding: 'clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 16px)',
             border: '1px solid white',
             borderRadius: '0.25rem',
             background: 'transparent',
             boxShadow: '0px 0px 0px 0px rgba(94, 234, 123, 0)',
-            letterSpacing: '0.075rem'
+            letterSpacing: '0.075rem',
+            whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(94, 234, 123, 0.05)'

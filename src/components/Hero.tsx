@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Hero() {
   const navigate = useNavigate();
   const textStyle: React.CSSProperties = {
-    fontSize: 'clamp(1.5rem, 4vw, 3.5rem)',
+    fontSize: 'clamp(1.2rem, 8vw, 3.5rem)',
     fontFamily: '"Orbitron", sans-serif',
     lineHeight: '1.1',
     fontWeight: '700',
@@ -15,10 +15,10 @@ export default function Hero() {
 
   const buttonStyle: React.CSSProperties = {
     fontFamily: 'doto, sans-serif',
-    fontSize: 'clamp(14px, 1.8vw, 18px)',
+    fontSize: 'clamp(12px, 3.5vw, 18px)',
     fontWeight: '500',
     letterSpacing: '-0.01em',
-    padding: 'clamp(10px, 1.5vh, 12px) clamp(40px, 8vw, 60px)',
+    padding: 'clamp(10px, 2.5vh, 12px) clamp(30px, 10vw, 60px)',
     border: '2.5px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '32px',
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -28,7 +28,7 @@ export default function Hero() {
     textTransform: 'uppercase' as const,
     backdropFilter: 'blur(0.5px)',
     width: '100%',
-    maxWidth: 'clamp(260px, 80vw, 320px)'
+    maxWidth: 'min(320px, 85vw)'
   };
 
   return (
@@ -38,11 +38,19 @@ export default function Hero() {
         minHeight: '100vh',
         height: '100vh',
         maxHeight: '100vh',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        paddingTop: 'clamp(80px, 15vh, 120px)',
+        paddingBottom: 'clamp(40px, 8vh, 80px)'
       }}
     >
-      <div className="max-w-[1200px] w-full text-center flex flex-col justify-center" style={{ height: 'auto' }}>
-        <h1 className="text-light" style={{ marginBottom: 'clamp(40px, 6vh, 60px)' }}>
+      <div 
+        className="max-w-[1200px] w-full text-center flex flex-col justify-center" 
+        style={{ 
+          height: 'auto',
+          maxHeight: 'calc(100vh - clamp(120px, 23vh, 200px))'
+        }}
+      >
+        <h1 className="text-light" style={{ marginBottom: 'clamp(25px, 5vh, 60px)' }}>
           <span className="block" style={textStyle}>R A K S H A - C H A I N</span>
         </h1>
         
@@ -50,12 +58,12 @@ export default function Hero() {
           style={{
             marginTop: '0',
             fontFamily: '"Source Code Pro", monospace',
-            fontSize: 'clamp(16px, 2vw, 22px)',
+            fontSize: 'clamp(13px, 3.5vw, 22px)',
             fontWeight: 600,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: 'rgb(242, 242, 242)',
-            marginBottom: 'clamp(15px, 2vh, 20px)'
+            marginBottom: 'clamp(12px, 3vh, 20px)'
           }}
         >
           Select Role
@@ -64,7 +72,7 @@ export default function Hero() {
         <div 
           className="flex flex-col justify-center items-center"
           style={{ 
-            gap: 'clamp(12px, 1.5vh, 16px)',
+            gap: 'clamp(10px, 2vh, 16px)',
             marginTop: '0'
           }}
         >
@@ -115,4 +123,3 @@ export default function Hero() {
     </section>
   );
 }
- 
