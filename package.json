@@ -8,8 +8,7 @@
     "build": "vite build",
     "type-check": "tsc -b",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "npm install --legacy-peer-deps"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
