@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function LoginPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [isCheckpoint, setIsCheckpoint] = useState(false)
 
   const buttonStyle: React.CSSProperties = {
     fontFamily: 'doto, sans-serif',
@@ -25,13 +27,30 @@ export default function LoginPage() {
     maxWidth: 'clamp(260px, 80vw, 320px)'
   }
 
+  useEffect(() => {
+    // Check if the URL contains 'checkpoint' to determine the login type
+    setIsCheckpoint(location.pathname.includes('checkpoint'))
+  }, [location])
+
   const handleLogin = () => {
-    if (username === 'admin' && password === 'admin123') {
-      sessionStorage.setItem('isLoggedIn', 'true')
-      setError('')
-      navigate('/dispatch')
+    if (isCheckpoint) {
+      // Checkpoint officer login
+      if (username === 'admin' && password === 'admin123') {
+        sessionStorage.setItem('isCheckpointLoggedIn', 'true')
+        setError('')
+        navigate('/checkpoint')
+      } else {
+        setError('Invalid credentials')
+      }
     } else {
-      setError('Invalid credentials')
+      // Dispatch officer login
+      if (username === 'admin' && password === 'admin123') {
+        sessionStorage.setItem('isLoggedIn', 'true')
+        setError('')
+        navigate('/dispatch')
+      } else {
+        setError('Invalid credentials')
+      }
     }
   }
 
@@ -53,8 +72,9 @@ export default function LoginPage() {
       <section className="flex items-center justify-center px-4 relative z-10" style={{ minHeight: '100vh' }}>
         <div className="max-w-[480px] w-full text-center">
           <h1 className="text-light" style={{ marginBottom: 'clamp(24px, 5vh, 40px)', fontFamily: '"Orbitron", sans-serif', fontSize: 'clamp(1.5rem, 3.5vw, 2.2rem)', fontWeight: 700, color: '#ffffff' }}>
-            Dispatch Login
+            {isCheckpoint ? 'Checkpoint Login' : 'Dispatch Login'}
           </h1>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
 
           <div style={{ width: '100%' }}>
             <div style={{ marginBottom: '18px' }}>
